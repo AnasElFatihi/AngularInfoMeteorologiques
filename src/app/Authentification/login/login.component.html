@@ -1,0 +1,114 @@
+
+
+
+<div >
+  <a class="hiddenanchor" id="signup"></a>
+  <a class="hiddenanchor" id="signin"></a>
+
+
+  <div class="login_wrapper">
+    <div class="animate form login_form">
+      <section class="login_content">
+        <h1>AUTHENTIFICATION</h1>
+          <form  >
+
+            <div class="alert alert-success" *ngIf="authentificationService.temoinRegister">
+              <strong>Login!</strong> Compte crée ! veuillez vous authentifier !
+            </div>
+            <div>
+              <input type="text"  id="login" [(ngModel)]="user.username" class="form-control" placeholder="{{ user.username}}" [ngModelOptions]="{standalone: true} "/>
+            </div>
+            <div class="alert alert-danger" *ngIf='user.username ==""'>
+              le login est obligatoire !
+            </div>
+            <div>
+              <input type="password" id="motdepasse" [(ngModel)]="user.password" class="form-control" placeholder="{{ user.password}}" [ngModelOptions]="{standalone: true}" />
+            </div>
+            <div class="alert alert-danger" *ngIf="user.password == ''">
+              Le mot de passe est obligatoire !
+            </div>
+            <div>
+              <div class="col-xs-12 text-center">
+                <button type="button" (click)="login()" class="btn btn-default submit" value="Log In" >Log In </button>
+                <!--<a class="reset_pass" href="#">Lost your password?</a>-->
+              </div>
+            </div>
+
+        </form>
+
+            <div class="alert alert-danger" *ngIf="authentificationService.temoin">
+              <strong>Erreur!</strong> Informations incorrectes ! veuillez resaisir vos informations !
+            </div>
+
+          <div class="clearfix"></div>
+
+          <div class="separator">
+            <p class="change_link">Nouveau membre ?
+              <a href="#signup" class="to_register"> Creer un Compte </a>
+            </p>
+          </div>
+            <div class="clearfix"></div>
+            <br />
+
+            <div>
+              <h1><i class="fa fa-university"></i> EMSI Marrakech!</h1>
+              <p>©2019 All Rights Reserved !</p>
+            </div>
+
+
+      </section>
+    </div>
+
+    <div id="register" class="animate form registration_form">
+      <section class="login_content">
+        <form>
+          <h1>Creation de Compte</h1>
+          <div>
+            <input type="text"  id="loginregister" [(ngModel)]="userRegiter.username" class="form-control" placeholder="{{ userRegiter.username}}" [ngModelOptions]="{standalone: true} "/>
+          </div>
+          <div class="alert alert-danger" *ngIf='userRegiter.username ==""'>
+            le login est obligatoire !
+          </div>
+          <div>
+            <input type="password" id="motdepasseregister" [(ngModel)]="userRegiter.password" class="form-control" placeholder="{{ userRegiter.password}}" [ngModelOptions]="{standalone: true}" />
+          </div>
+          <div class="alert alert-danger" *ngIf="userRegiter.password == ''">
+            Le mot de passe est obligatoire !
+          </div>
+          <div>
+            <input type="password" id="motdepasseregister2" [(ngModel)]="repassword" class="form-control" placeholder="{{ repassword }}" [ngModelOptions]="{standalone: true}" />
+          </div>
+          <div class="alert alert-danger" *ngIf="repassword == ''">
+            La confirmation du  mot de passe est obligatoire !
+          </div>
+          <div class="alert alert-danger" *ngIf="authentificationService.temoinRegister">
+            <strong>Erreur!</strong> Informations incorrectes ! veuillez resaisir vos informations !
+          </div>
+          <div>
+            <div class="col-xs-12 text-center">
+              <button type="button" (click)="enregistrer()" class="btn btn-default submit" value="Log In" >Créer un Compte </button>
+              <!--<a class="reset_pass" href="#">Lost your password?</a>-->
+            </div>
+          </div>
+
+          <div class="clearfix"></div>
+
+          <div class="separator">
+            <p class="change_link">Deja un membre  ?
+              <a href="#signin" id="dologin" class="to_register"> Log in </a>
+            </p>
+
+            <div class="clearfix"></div>
+            <br />
+
+            <div>
+              <h1><i class="fa fa-university"></i> EMSI Marrakech!</h1>
+              <p>©2019 All Rights Reserved !</p>
+            </div>
+          </div>
+        </form>
+      </section>
+    </div>
+  </div>
+</div>
+
