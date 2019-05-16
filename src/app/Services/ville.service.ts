@@ -30,4 +30,17 @@ export class VilleService {
     console.log(id);
     return this.http.delete(this.url + "/" +id,{observe: 'response'});
   }
+
+  getVille(id){
+    return this.http.get(this.url + "/" +id,{observe: 'response'});
+  }
+
+  updateVille(ville){
+
+    return this.http.put(this.url + "/" + ville.id,{
+      id:ville.id,
+      latitude: ville.latitude,
+      longitude: ville.longitude,
+      name: ville.name},{observe: 'response'});
+  }
 }

@@ -11,8 +11,8 @@ import {AppRoutingModule} from './app-routing/app-routing.module';
 import { HttpClientModule } from '@angular/common/http';
 import { AccueilComponent } from './Dashboard/accueil/accueil.component';
 import { VillesComponent } from './Admin/villes/villes.component';
-
-
+//import { HTTP_INTERCEPTORS } from '@angular/common/http';
+//import { Interceptor } from './Authentification/Interceptor'
 @NgModule({
   declarations: [
     AppComponent,
@@ -29,7 +29,14 @@ import { VillesComponent } from './Admin/villes/villes.component';
     HttpClientModule
   ],
   exports: [RouterModule],
-  providers: [],
+  providers: [
+    /*{
+      provide: HTTP_INTERCEPTORS,
+      useClass: Interceptor,
+      multi: true
+    }*/
+
+],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
