@@ -5,6 +5,8 @@ import {AccueilComponent} from '../Dashboard/accueil/accueil.component';
 import { AuthGuardService as AuthGuard} from  '../Authentification/Guards/auth-guard.service';
 import {VillesComponent} from '../Admin/villes/villes.component';
 import {CapteursComponent} from '../Admin/capteurs/capteurs.component';
+import {UtilisateursComponent} from "../Admin/utilisateurs/utilisateurs.component";
+import {SaisieValeurComponent} from "../Admin/capteurs/saisie-valeur/saisie-valeur.component";
 
 const routes: Routes = [
   {
@@ -24,7 +26,14 @@ const routes: Routes = [
         path: 'capteurs',
         component: CapteursComponent
       },
-
+      {
+        path:'capteurs/:id',
+        component: SaisieValeurComponent
+      },
+      {
+        path: 'utilisateurs',
+        component: UtilisateursComponent
+      }
     ]
   },
   { path: '**', redirectTo: '' }

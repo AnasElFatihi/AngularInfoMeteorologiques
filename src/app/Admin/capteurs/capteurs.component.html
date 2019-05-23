@@ -92,12 +92,12 @@
           <td>{{ element.libelle }}</td>
           <td> <div *ngIf="element.etat == 1">En Fonction </div> <div *ngIf="element.etat == 0">En Panne </div> </td>
           <td>{{ element.dateinstall }}</td>
-          <td>{{ element.marque}}</td>
+          <td>{{ element.marque}}</td>"
           <td>{{ element.region }}</td>
           <td>
             <button class="btn btn-small btn-info" (click)="editerCapteur(element.idcapt)"> Editer </button>
             <button class="btn btn-small btn-danger" *ngIf="element.idcapt != undefined" (click)="deleteCapteur(element.idcapt)"> Supprimer </button>
-
+            <a class="btn btn-small btn-success" [routerLink]="[element.idcapt]" > Saisir Valeur </a>
           </td>
         </tr>
 
@@ -105,4 +105,5 @@
       </table>
     </div>
   </div>
+  <router-outlet></router-outlet>
 </div>

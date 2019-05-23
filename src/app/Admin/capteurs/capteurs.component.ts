@@ -82,4 +82,5 @@ export class CapteursComponent implements OnInit {
   }
 
 
+
 }
