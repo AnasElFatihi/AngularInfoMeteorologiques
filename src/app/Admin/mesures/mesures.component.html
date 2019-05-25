@@ -1,0 +1,89 @@
+<div class="row">
+  <div class="col-md-12 col-sm-12 col-xs-12">
+    <div class="x_panel">
+      <div class="x_title">
+        <h2>Ajout d'un capteur</h2>
+        <ul class="nav navbar-right panel_toolbox">
+          <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+          </li>
+
+        </ul>
+        <div class="clearfix"></div>
+      </div>
+      <div class="x_content">
+        <br />
+
+        <form id="demo-form2" data-parsley-validate class="form-horizontal form-label-left">
+
+          <div class="form-group">
+            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="libelle">Mesure <span class="required">*</span>
+            </label>
+            <div class="col-md-6 col-sm-6 col-xs-12">
+              <input type="text" id="libelle" required="required" class="form-control col-md-7 col-xs-12" [(ngModel)]="mesure.mesure" name="libelle"   >
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="control-label col-md-3 col-sm-3 col-xs-12"> Type valeur <span class="required">*</span></label>
+            <div class="col-md-6 col-sm-6 col-xs-12">
+              <select class="form-control" name="type" [(ngModel)]="mesure.type">
+                <option value="nombre">Nombre </option>
+
+              </select>
+
+            </div>
+          </div>
+
+          <div class="ln_solid"></div>
+          <div class="form-group">
+            <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
+
+              <button  class="btn btn-success" type="submit" (click)="ajouterCapteur($event)" [disabled]="editer"> Submit </button>
+              <a class="btn btn-primary"  (click)="initisaliser()"> Reset </a>
+              <button class="btn btn-primary" *ngIf="editer" (click)="validerModification()">Valider la modification</button>
+
+            </div>
+          </div>
+
+        </form>
+
+
+      </div>
+    </div>
+
+
+    <div class="x_content">
+      <div class="row">
+        <div class="pull-left">
+          <h3> <u>Liste des Mesures </u> </h3>
+        </div>
+
+
+      </div>
+      <table id="datatable" class="table table-striped table-bordered">
+        <thead>
+        <tr>
+          <th>Mesure</th>
+          <th>Type</th>
+          <th> Actions </th>
+        </tr>
+        </thead>
+
+
+        <tbody *ngIf="mesures">
+        <tr *ngFor="let element of mesures" >
+          <td>{{ element.mesure }}</td>
+
+          <td>{{ element.typevaleur }}</td>
+          <td>
+            <button class="btn btn-small btn-info" (click)="editerMesure(element.id)"> Editer </button>
+            <button class="btn btn-small btn-danger" *ngIf="element.id != undefined" (click)="deleteMesure(element.id)"> Supprimer </button>
+            <!--<a class="btn btn-small btn-success" [routerLink]="[element.idcapt]" > Saisir Valeur </a> -->
+          </td>
+        </tr>
+
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <router-outlet></router-outlet>
+</div>
