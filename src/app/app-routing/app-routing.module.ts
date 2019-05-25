@@ -39,7 +39,7 @@ const routes: Routes = [
       {
         path: 'mesures',
         component: MesuresComponent
-      }
+      },
       {
         path: 'regions',
         component: RegionsComponent
