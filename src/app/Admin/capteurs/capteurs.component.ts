@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
 import { Capteurs } from '../../Classes/capteurs';
 import {CapteursService} from '../../Services/capteurs.service';
 
@@ -16,6 +16,9 @@ export class CapteursComponent implements OnInit {
   public capteur: Capteurs = new Capteurs();
   public capteurEditer: Capteurs = new Capteurs();
   public editer = false ;
+
+  public csvContent ;
+  public donnees;
 
   constructor(private capteursService: CapteursService) {  }
 
@@ -77,10 +80,45 @@ export class CapteursComponent implements OnInit {
     this.editer = false;
     this.capteurs = new this.capteurs();
   }
+
   initisaliser() {
     this.editer = false;
   }
 
+  @ViewChild('inputFile') myInputVariable: ElementRef;
 
+  reset() {
+    this.myInputVariable.nativeElement.value = '';
+  }
+  onFileSelect(input: HTMLInputElement) {
+    const files = input.files;
+    const content = this.csvContent;
+    if (files && files.length) {
 
+      const fileToRead = files[0];
+
+      const fileReader = new FileReader();
+      fileReader.onload = this.onFileLoad;
+
+      fileReader.readAsText(fileToRead, "UTF-8");
+
+    }
+  }
+  onFileLoad(fileLoadedEvent) {
+
+    const csvSeparator = ';';
+    const textFromFileLoaded = fileLoadedEvent.target.result;
+    this.csvContent = textFromFileLoaded;
+    // alert(textFromFileLoaded);
+
+    const txt = textFromFileLoaded;
+    const csv = [];
+    const lines = txt.split('\n');
+    lines.forEach(element => {
+      const cols: string[] = element.split(csvSeparator);
+      if(cols[0] !== "") csv.push(cols);
+    });
+    this.donnees = csv;
+    console.log(this.donnees);
+  }
 }

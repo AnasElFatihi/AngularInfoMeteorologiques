@@ -14,6 +14,7 @@ import { VillesComponent } from './Admin/villes/villes.component';
 import { CapteursComponent } from './Admin/capteurs/capteurs.component';
 import { UtilisateursComponent } from './Admin/utilisateurs/utilisateurs.component';
 import { SaisieValeurComponent } from './Admin/capteurs/saisie-valeur/saisie-valeur.component';
+import { MesuresComponent } from './Admin/mesures/mesures.component';
 // import { HTTP_INTERCEPTORS } from '@angular/common/http';
 // import { Interceptor } from './Authentification/Interceptor'
 @NgModule({
@@ -25,6 +26,7 @@ import { SaisieValeurComponent } from './Admin/capteurs/saisie-valeur/saisie-val
     CapteursComponent,
     UtilisateursComponent,
     SaisieValeurComponent,
+    MesuresComponent,
 
   ],
   imports: [
