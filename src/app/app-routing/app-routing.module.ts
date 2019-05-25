@@ -5,6 +5,7 @@ import {AccueilComponent} from '../Dashboard/accueil/accueil.component';
 import { AuthGuardService as AuthGuard} from  '../Authentification/Guards/auth-guard.service';
 import {VillesComponent} from '../Admin/villes/villes.component';
 import {CapteursComponent} from '../Admin/capteurs/capteurs.component';
+import {RegionsComponent} from '../Admin/regions/regions.component';
 
 const routes: Routes = [
   {
@@ -23,6 +24,10 @@ const routes: Routes = [
       {
         path: 'capteurs',
         component: CapteursComponent
+      },
+      {
+        path: 'regions',
+        component: RegionsComponent
       },
 
     ]
