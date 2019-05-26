@@ -56,6 +56,7 @@ export class RegionsComponent implements OnInit {
   deleteRegion(id){
     this.regionService.deleteRegion(id).subscribe(( data) => {
       swal("Region Supprimée!", "", "success");
+
       this.regionService.getAllRegions().subscribe( ( data:any[] ) => {
         this.regions = data;
       });

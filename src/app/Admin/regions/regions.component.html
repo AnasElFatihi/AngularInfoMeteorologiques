@@ -73,8 +73,8 @@
 
         <tbody *ngIf="regions">
         <tr *ngFor="let element of regions" >
-          <td>{{ element.name }}</td>
-          <td> {{element.id}} </td>
+          <td >{{ element?.name }}</td>
+          <td > {{element?.ville?.name }} </td>
           <td>
             <button class="btn btn-small btn-info" (click)="editerRegion(element.id)"> Editer </button>
             <button class="btn btn-small btn-danger" *ngIf="element.id != undefined" (click)="deleteRegion(element.id)"> Supprimer</button>

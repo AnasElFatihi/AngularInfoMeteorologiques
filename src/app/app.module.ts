@@ -16,6 +16,7 @@ import { UtilisateursComponent } from './Admin/utilisateurs/utilisateurs.compone
 import { SaisieValeurComponent } from './Admin/capteurs/saisie-valeur/saisie-valeur.component';
 import { MesuresComponent } from './Admin/mesures/mesures.component';
 import { RegionsComponent } from './Admin/regions/regions.component';
+import { NotificationComponent } from './Admin/mesures/notification/notification.component';
 // import { HTTP_INTERCEPTORS } from '@angular/common/http';
 // import { Interceptor } from './Authentification/Interceptor'
 @NgModule({
@@ -29,6 +30,7 @@ import { RegionsComponent } from './Admin/regions/regions.component';
     UtilisateursComponent,
     SaisieValeurComponent,
     MesuresComponent,
+    NotificationComponent,
 
   ],
   imports: [
