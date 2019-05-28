@@ -16,8 +16,8 @@ export class UtilisateursService {
     return this.http.get(this.url + "/all");
   }
 
-  ajouterUser(user){
-    return this.http.post(this.url + "/registerresponsable", {
+  ajouterUser(user, ida){
+    return this.http.post(this.url + "/registerresponsable/" + ida, {
       username: user.username,
       password: user.password,
       repassword: user.repassword
@@ -32,15 +32,16 @@ export class UtilisateursService {
 
   updateUtilisateur(user) {
     return this.http.put(this.url + "/" + user.id,{
-      id:user.id,
-      username:user.username,
+      id: user.id,
+      username: user.username,
       password: user.password,
       repassword: user.repassword,
+      region: user.region
       },{observe: 'response'});
 
   }
 
   getUser(id) {
-    return this.http.get(this.url + "/" +id,{observe: 'response'});
+    return this.http.get(this.url + "/" + id,{observe: 'response'});
   }
 }

@@ -14,8 +14,6 @@ export class VilleService {
 
   constructor(private http: HttpClient, public router: Router) { }
 
-
-
   getAllVilles() {
     return this.http.get(this.url + "/all");
   }

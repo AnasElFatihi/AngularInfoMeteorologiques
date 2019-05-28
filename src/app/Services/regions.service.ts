@@ -34,7 +34,7 @@ export class RegionService {
     return this.http.put(this.url + '/' + region.id,{
       id: region.id,
       name: region.name,
-      //ville: region.ville
+      ville: region.ville
     }, { observe: 'response'});
   }
 }

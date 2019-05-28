@@ -2,7 +2,7 @@
   <div class="col-md-12 col-sm-12 col-xs-12">
     <div class="x_panel " >
       <div class="x_title" >
-        <h2>Ajout d'une ville </h2>
+        <h2>Ajout d'un utilisateur </h2>
         <ul class="nav navbar-right panel_toolbox">
           <li><a class="chevron" data-toggle="collapse" data-target="#AA" aria-expanded="false"><i class="fa fa-chevron-up"></i></a>
           </li>
@@ -37,10 +37,10 @@
             </div>
           </div>
           <div class="form-group">
-            <label for="longitude" class="control-label col-md-3 col-sm-3 col-xs-12">Région <span class="required">*</span></label>
+            <label class="control-label col-md-3 col-sm-3 col-xs-12">Nom Region</label>
             <div class="col-md-6 col-sm-6 col-xs-12">
-              <select name="region" class="form-control">
-                <option> anas </option>
+              <select class="form-control" id="nameville" name="ville" [(ngModel)] ="regionSelected">
+                <option [(ngValue)]="region.id" *ngFor="let region of regions">{{region?.name}}</option>
               </select>
             </div>
           </div>
@@ -76,11 +76,11 @@
 
         <tbody *ngIf="users">
         <tr *ngFor="let element of users" >
-          <td>{{ element.username }}</td>
+          <td>{{ element?.username }}</td>
 
           <td>
-            <button class="btn btn-small btn-info" (click)="editerUser(element.id)"> Editer </button>
-            <button class="btn btn-small btn-danger" *ngIf="element.id != undefined" (click)="deleteUser(element.id)"> Supprimer</button>
+            <button class="btn btn-small btn-info" (click)="editerUser(element?.id)"> Editer </button>
+            <button class="btn btn-small btn-danger" *ngIf="element?.id != undefined" (click)="deleteUser(element?.id)"> Supprimer</button>
 
           </td>
         </tr>

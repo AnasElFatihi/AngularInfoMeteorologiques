@@ -1,10 +1,6 @@
 import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
 import { Capteurs } from '../../Classes/capteurs';
 import {CapteursService} from '../../Services/capteurs.service';
-import {CsvService} from "../../Services/csv.service";
-
-
-import $ from 'jquery';
 
 
 declare var swal: any;
@@ -30,21 +26,27 @@ export class CapteursComponent implements OnInit {
   private stompClient;
   private serverUrl = 'http://localhost:8080/socket';
 
-  constructor(private capteursService: CapteursService, private csvService: CsvService) {
-    //this.initializeWebSocketConnection();
+  public regions;
+  public regionSelected;
 
-  }
+  constructor(private capteursService: CapteursService, private regionService: RegionService ) {  }
 
   ngOnInit() {
     this.capteursService.getAllCapteurs().subscribe( ( data: any[] ) => {
       this.capteurs = data;
       console.log(this.capteurs);
     });
+    this.regionService.getAllRegions().subscribe( ( data:any[] ) => {
+      this.regions = data;
+      console.log(this.regions);
+    });
   }
+
+
   ajouterCapteur(e) {
     e.preventDefault();
-    if (this.capteur.Libelle !== undefined && this.capteur.etat !== undefined && this.capteur.dateinstall !== undefined && this.capteur.marque !== undefined && this.capteur.region !== undefined) {
-      this.capteursService.ajouterCapteur(this.capteur).subscribe(( data ) => {
+    if (this.capteur.libelle !== undefined && this.capteur.etat !== undefined && this.capteur.dateinstall !== undefined && this.capteur.marque !== undefined && this.regionSelected !== undefined) {
+      this.capteursService.ajouterCapteur(this.capteur, this.regionSelected).subscribe(( data ) => {
         console.log(data);
         this.capteurs.push( this.capteur);
         this.capteur = new Capteurs();
@@ -66,11 +68,13 @@ export class CapteursComponent implements OnInit {
   }
 
   editerCapteur(id) {
-    this.editer = true;
-    this.capteursService.getCapteur(id).subscribe((data: any) => {
 
-      this.capteur.idcapt = data.body.id;
-      this.capteur.Libelle = data.body.libelle;
+    this.editer = true;
+
+    this.capteursService.getCapteur(id).subscribe(( data:any) => {
+      console.log(data);
+      this.capteur.idcapt = data.body.idcapt;
+      this.capteur.libelle = data.body.libelle;
       this.capteur.etat = data.body.etat;
       this.capteur.dateinstall = data.body.dateinstall;
       this.capteur.marque = data.body.marque;
@@ -78,20 +82,19 @@ export class CapteursComponent implements OnInit {
       console.log(this.capteurs);
 
     });
-
   }
 
   validerModification() {
     this.capteursService.updateCapteur(this.capteur).subscribe(( data) => {
       this.capteursService.getAllCapteurs().subscribe( (data : any[] ) => {
         this.capteurs = data;
-        console.log(this.capteur);
+
       });
-      console.log(data);
+
 
     });
     this.editer = false;
-    this.capteurs = new this.capteurs();
+    this.capteur = new Capteurs();
   }
 
   initisaliser() {
@@ -169,10 +172,4 @@ export class CapteursComponent implements OnInit {
       });
     });
   }
-
-  sendMessage(message){
-    this.stompClient.send("/app/send/message" , {}, message);
-    $('#input').val('');
-  }*/
-
 }

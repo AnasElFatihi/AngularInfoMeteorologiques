@@ -1,7 +1,9 @@
+import {Region} from '../region';
+
 export class User {
-  id:number;
+  id: number;
   username: string;
   password: string;
-  repassword:string;
-
+  repassword: string;
+  region: Region;
 }

@@ -17,14 +17,15 @@ export class CapteursService {
     return this.http.get(this.url + '/all');
   }
 
-  ajouterCapteur(capteur) {
+  ajouterCapteur(capteur, ida) {
 
-    return this.http.post(this.url, {
-      libelle: capteur.Libelle,
+    return this.http.post(this.url + '/' + ida, {
+      idcapt : capteur.idcapt,
+      libelle: capteur.libelle,
       etat: capteur.etat,
       dateinstall: capteur.dateinstall,
       marque: capteur.marque,
-      region: capteur.region,
+      //region: capteur.region,
     }, {observe: 'response'});
   }
 
@@ -37,14 +38,18 @@ export class CapteursService {
     return this.http.get(this.url + '/' + id ,{ observe: 'response'});
   }
 
-  updateCapteur(capteur) {
 
+  updateCapteur(capteur) {
+    console.log(capteur);
     return this.http.put(this.url + '/' + capteur.idcapt, {
       idcapt: capteur.idcapt,
       libelle: capteur.libelle,
       etat: capteur.etat,
       dateinstall: capteur.dateinstall,
       marque: capteur.marque,
-      region: capteur.region},{ observe: 'response'});
+      region: capteur.region},
+      { observe: 'response'});
+
+      console.log("mora update" + capteur);
   }
 }
