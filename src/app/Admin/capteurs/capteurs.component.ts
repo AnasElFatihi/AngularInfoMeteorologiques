@@ -1,6 +1,7 @@
 import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
-import { Capteurs } from '../../Classes/capteurs';
+import {Capteurs} from '../../Classes/capteurs';
 import {CapteursService} from '../../Services/capteurs.service';
+import {RegionService} from "../../Services/regions.service";
 
 
 declare var swal: any;
@@ -20,18 +21,27 @@ export class CapteursComponent implements OnInit {
   public csvContent ;
   public donnees;
 
-  constructor(private capteursService: CapteursService) {  }
+  public regions;
+  public regionSelected;
+
+  constructor(private capteursService: CapteursService, private regionService: RegionService ) {  }
 
   ngOnInit() {
     this.capteursService.getAllCapteurs().subscribe( ( data: any[] ) => {
       this.capteurs = data;
       console.log(this.capteurs);
     });
+    this.regionService.getAllRegions().subscribe( ( data:any[] ) => {
+      this.regions = data;
+      console.log(this.regions);
+    });
   }
+
+
   ajouterCapteur(e) {
     e.preventDefault();
-    if (this.capteur.Libelle !== undefined && this.capteur.etat !== undefined && this.capteur.dateinstall !== undefined && this.capteur.marque !== undefined && this.capteur.region !== undefined) {
-      this.capteursService.ajouterCapteur(this.capteur).subscribe(( data ) => {
+    if (this.capteur.libelle !== undefined && this.capteur.etat !== undefined && this.capteur.dateinstall !== undefined && this.capteur.marque !== undefined && this.regionSelected !== undefined) {
+      this.capteursService.ajouterCapteur(this.capteur, this.regionSelected).subscribe(( data ) => {
         console.log(data);
         this.capteurs.push( this.capteur);
         this.capteur = new Capteurs();
@@ -53,32 +63,32 @@ export class CapteursComponent implements OnInit {
   }
 
   editerCapteur(id) {
-    this.editer = true;
-    this.capteursService.getCapteur(id).subscribe((data: any) => {
 
-      this.capteur.idcapt = data.body.id;
-      this.capteur.Libelle = data.body.libelle;
+    this.editer = true;
+
+    this.capteursService.getCapteur(id).subscribe(( data:any) => {
+      console.log(data);
+      this.capteur.idcapt = data.body.idcapt;
+      this.capteur.libelle = data.body.libelle;
       this.capteur.etat = data.body.etat;
       this.capteur.dateinstall = data.body.dateinstall;
       this.capteur.marque = data.body.marque;
       this.capteur.region = data.body.region;
-      console.log(this.capteurs);
-
+      console.log(this.capteur.region);
     });
-
   }
 
   validerModification() {
     this.capteursService.updateCapteur(this.capteur).subscribe(( data) => {
       this.capteursService.getAllCapteurs().subscribe( (data : any[] ) => {
         this.capteurs = data;
-        console.log(this.capteur);
+
       });
-      console.log(data);
+
 
     });
     this.editer = false;
-    this.capteurs = new this.capteurs();
+    this.capteur = new Capteurs();
   }
 
   initisaliser() {
