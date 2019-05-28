@@ -80,6 +80,7 @@
         <div class="pull-right" >
 
           <input class="btn btn-success" type="file"  (change)="onFileSelect($event.target)"  name="myfile" #inputFile>
+          <button class="btn btn-sm btn-info" (click)="uploader()">Uploader</button>
           <button class="btn btn-sm btn-success"(click)="reset()">Reset</button>
         </div>
       </div>
@@ -114,5 +115,11 @@
       </table>
     </div>
   </div>
+
   <router-outlet></router-outlet>
+
+  <input type="text" id=input" />
+  <div class="chat">
+
+  </div>
 </div>
