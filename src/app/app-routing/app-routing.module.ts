@@ -9,6 +9,7 @@ import {UtilisateursComponent} from "../Admin/utilisateurs/utilisateurs.componen
 import {SaisieValeurComponent} from "../Admin/capteurs/saisie-valeur/saisie-valeur.component";
 import {MesuresComponent} from "../Admin/mesures/mesures.component";
 import {RegionsComponent} from '../Admin/regions/regions.component';
+import {NotificationComponent} from "../Admin/mesures/notification/notification.component";
 
 const routes: Routes = [
   {
@@ -38,7 +39,13 @@ const routes: Routes = [
       },
       {
         path: 'mesures',
-        component: MesuresComponent
+        component: MesuresComponent,
+        children: [
+          {
+            path: ':id',
+            component:NotificationComponent,
+          }
+          ]
       },
       {
         path: 'regions',
