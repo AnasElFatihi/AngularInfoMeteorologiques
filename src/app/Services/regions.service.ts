@@ -36,6 +36,9 @@ export class RegionService {
       name: region.name,
       ville: region.ville
     }, { observe: 'response'});
+
   }
+
+
 }
 

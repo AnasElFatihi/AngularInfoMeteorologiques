@@ -1,6 +1,8 @@
 import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
 import { Capteurs } from '../../Classes/capteurs';
 import {CapteursService} from '../../Services/capteurs.service';
+import {CsvService} from "../../Services/csv.service";
+import {RegionService} from "../../Services/regions.service";
 
 
 declare var swal: any;
@@ -29,7 +31,7 @@ export class CapteursComponent implements OnInit {
   public regions;
   public regionSelected;
 
-  constructor(private capteursService: CapteursService, private regionService: RegionService ) {  }
+  constructor(private capteursService: CapteursService, private regionService: RegionService, private  csvService: CsvService) {  }
 
   ngOnInit() {
     this.capteursService.getAllCapteurs().subscribe( ( data: any[] ) => {
@@ -157,8 +159,8 @@ export class CapteursComponent implements OnInit {
      this.montableau=[];
      this.reset();
   }
-/*
 
+/*
   private initializeWebSocketConnection() {
     let ws = new SockJS(this.serverUrl);
     this.stompClient = Stomp.over(ws);
@@ -172,4 +174,6 @@ export class CapteursComponent implements OnInit {
       });
     });
   }
+
+ */
 }
