@@ -19,7 +19,7 @@ export class RegionsComponent implements OnInit {
   public regionEditer: Region = new Region();
   public editer = false;
   public villes;
-  public villeSelected;
+  //public ville: Ville;
   constructor(private regionService: RegionService, private villeService: VilleService) {  }
 
 
@@ -41,7 +41,7 @@ export class RegionsComponent implements OnInit {
     e.preventDefault();
     console.log(this.regions);
     if(this.region.name !== undefined && this.region.name != null){
-      this.regionService.ajouterRegion(this.region, this.villeSelected).subscribe(( data ) =>{
+      this.regionService.ajouterRegion(this.region, this.region.ville.id).subscribe(( data ) =>{
         console.log(data);
         this.regions.push( this.region);
         this.region = new Region();
@@ -73,7 +73,8 @@ export class RegionsComponent implements OnInit {
       this.region.id = data.body.id;
       this.region.name = data.body.name;
       this.region.ville = data.body.ville;
-      console.log(this.region);
+      console.log(this.region.ville);
+      //console.log(this.region.ville.name);
 
     });
 
@@ -85,7 +86,7 @@ export class RegionsComponent implements OnInit {
         this.regions = data;
         console.log(this.regions);
       });
-      console.log(data);
+      //console.log(data);
 
     });
     this.editer=false;

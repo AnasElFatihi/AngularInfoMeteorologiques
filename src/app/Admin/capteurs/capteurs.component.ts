@@ -1,11 +1,6 @@
-import {Component, ElementRef, EventEmitter, Input, OnInit, Output, ViewChild} from '@angular/core';
+import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
 import { Capteurs } from '../../Classes/capteurs';
 import {CapteursService} from '../../Services/capteurs.service';
-import {RegionService} from "../../Services/regions.service";
-import {CsvService} from "../../Services/csv.service";
-
-import * as SocketIo from 'socket.io-client';
-import {SharingDataService} from "../../Services/sharing-data.service";
 
 
 declare var swal: any;
@@ -202,5 +197,5 @@ export class CapteursComponent implements OnInit {
         }
       });
     });
-  }*/
+  }
 }
