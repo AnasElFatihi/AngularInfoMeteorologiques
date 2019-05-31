@@ -86,71 +86,65 @@
                 <li><a routerLink="" (click)="logout()"><i class="fa fa-sign-out pull-right"></i> Log Out</a></li>
               </ul>
             </li>
-
+            <!--
             <li role="presentation" class="dropdown">
-              <a href="javascript:;" class="dropdown-toggle info-number" data-toggle="dropdown" aria-expanded="false">
+              <a  class="dropdown-toggle info-number"  >
                 <i class="fa fa-envelope-o"></i>
-                <span class="badge bg-green">6</span>
+                <span class="badge bg-green">{{ sharingDataService.notifications?.length}}</span>
+                {{ sharingDataService.notifications}}
               </a>
-              <ul id="menu1" class="dropdown-menu list-unstyled msg_list" role="menu">
-                <li>
+              <ul  class="dropdown-menu list-unstyled msg_list" data-toggle="dropdown" role="menu" *ngIf="notifications">
+                <li  class="dropdown-menu" *ngFor="let element of sharingDataService.notifications">
                   <a>
-                    <span class="image"><img src="images/img.jpg" alt="Profile Image" /></span>
+
                     <span>
-                          <span>John Smith</span>
+                          <span>Notification</span>
                           <span class="time">3 mins ago</span>
                         </span>
                     <span class="message">
-                          Film festivals used to be do-or-die moments for movie makers. They were where...
+                          {{ element?.message}}
                         </span>
                   </a>
                 </li>
                 <li>
-                  <a>
-                    <span class="image"><img src="images/img.jpg" alt="Profile Image" /></span>
-                    <span>
-                          <span>John Smith</span>
-                          <span class="time">3 mins ago</span>
-                        </span>
-                    <span class="message">
-                          Film festivals used to be do-or-die moments for movie makers. They were where...
-                        </span>
-                  </a>
+                  anas
                 </li>
-                <li>
-                  <a>
-                    <span class="image"><img src="images/img.jpg" alt="Profile Image" /></span>
-                    <span>
-                          <span>John Smith</span>
-                          <span class="time">3 mins ago</span>
-                        </span>
-                    <span class="message">
-                          Film festivals used to be do-or-die moments for movie makers. They were where...
-                        </span>
-                  </a>
-                </li>
-                <li>
-                  <a>
-                    <span class="image"><img src="images/img.jpg" alt="Profile Image" /></span>
-                    <span>
-                          <span>John Smith</span>
-                          <span class="time">3 mins ago</span>
-                        </span>
-                    <span class="message">
-                          Film festivals used to be do-or-die moments for movie makers. They were where...
-                        </span>
-                  </a>
-                </li>
-                <li>
-                  <div class="text-center">
-                    <a>
-                      <strong>See All Alerts</strong>
-                      <i class="fa fa-angle-right"></i>
-                    </a>
-                  </div>
-                </li>
+
+
+
               </ul>
+            </li> -->
+            <li class="">
+              <a href="javascript:;" class="user-profile dropdown-toggle" data-toggle="dropdown" aria-expanded="false" (focusout)="focusOutFunction()">
+
+                <a  class="dropdown-toggle info-number"  >
+                  <i class="fa fa-envelope-o"></i>
+                  <span class="badge bg-green">{{ notifications?.length}}</span>
+                  
+                </a>
+
+
+              </a>
+              <ul class="dropdown-menu dropdown-usermenu pull-right" >
+                <li   *ngFor="let element of notifications">
+                  <a>
+
+                      <span>
+                            <span>Notification</span>
+                      </span>
+                    <span class="message">
+                            {{ element?.message}}
+                         </span>
+                  </a>
+                  
+                </li>
+
+              </ul>
+
+
+
             </li>
+
           </ul>
         </nav>
       </div>

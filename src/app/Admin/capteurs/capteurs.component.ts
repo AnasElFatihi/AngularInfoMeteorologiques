@@ -1,6 +1,11 @@
-import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
+import {Component, ElementRef, EventEmitter, Input, OnInit, Output, ViewChild} from '@angular/core';
 import { Capteurs } from '../../Classes/capteurs';
 import {CapteursService} from '../../Services/capteurs.service';
+import {RegionService} from "../../Services/regions.service";
+import {CsvService} from "../../Services/csv.service";
+
+import * as SocketIo from 'socket.io-client';
+import {SharingDataService} from "../../Services/sharing-data.service";
 
 
 declare var swal: any;
@@ -22,14 +27,17 @@ export class CapteursComponent implements OnInit {
 
   public data =[];
 
-
-  private stompClient;
-  private serverUrl = 'http://localhost:8080/socket';
+  public  socket = SocketIo("http://localhost:4000/");
 
   public regions;
   public regionSelected;
 
-  constructor(private capteursService: CapteursService, private regionService: RegionService ) {  }
+
+  public notifications =[];
+
+  constructor(private capteursService: CapteursService, private regionService: RegionService,private csvService:CsvService
+  , private sharingDataService : SharingDataService)
+  { this.notifications = new Array();  }
 
   ngOnInit() {
     this.capteursService.getAllCapteurs().subscribe( ( data: any[] ) => {
@@ -39,6 +47,18 @@ export class CapteursComponent implements OnInit {
     this.regionService.getAllRegions().subscribe( ( data:any[] ) => {
       this.regions = data;
       console.log(this.regions);
+    });
+
+
+    this.socket.on(
+      "data" ,(data) => console.log(data)
+    );
+
+    this.socket.on("notification", (data) => {
+        this.notifications = data;
+        this.sharingDataService.notifications= data;
+
+
     });
   }
 
@@ -152,11 +172,22 @@ export class CapteursComponent implements OnInit {
      console.log(this.montableau);
 
     this.csvService.upload(this.montableau).subscribe( (data : any)=> {
-        console.log(data);
+        //console.log(data);
+      if( data.body.length >0)
+      {
+        this.socket.emit("notification",data.body);
+
+      }
+
+
     });
      this.montableau=[];
      this.reset();
+
+
   }
+
+
 /*
 
   private initializeWebSocketConnection() {
@@ -171,5 +202,5 @@ export class CapteursComponent implements OnInit {
         }
       });
     });
-  }
+  }*/
 }
