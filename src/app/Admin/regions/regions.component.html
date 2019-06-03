@@ -37,8 +37,8 @@
           <div class="form-group">
             <label class="control-label col-md-3 col-sm-3 col-xs-12">Nom Ville</label>
             <div class="col-md-6 col-sm-6 col-xs-12">
-              <select class="form-control" id="nomville" name="nomville" [(ngModel)] ="selectedVille">
-                <option  *ngFor="let ville of villes" [ngValue]="ville.id">{{ville.name}}</option>
+              <select class="form-control" id="nomville" name="nomville" [(ngModel)] ="region.ville">
+                <option  *ngFor="let ville of villes" [ngValue]="ville">{{ville.name}}</option>
               </select>
             </div>
           </div>

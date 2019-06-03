@@ -55,13 +55,11 @@
             </div>
           </div>
 
-
-
           <div class="form-group">
             <label class="control-label col-md-3 col-sm-3 col-xs-12">Region<span class="required">*</span> </label>
             <div class="col-md-6 col-sm-6 col-xs-12">
-              <select class="form-control" id="nameregion" name="region" [(ngModel)] ="regionSelected">
-                <option [ngValue]="region?.id" *ngFor="let region of regions">{{region?.name}}</option>
+              <select class="form-control" id="nameregion" name="region" [(ngModel)] ="capteur.region">
+                <option [ngValue]="region" *ngFor="let region of regions">{{region.name}}</option>
               </select>
             </div>
           </div>

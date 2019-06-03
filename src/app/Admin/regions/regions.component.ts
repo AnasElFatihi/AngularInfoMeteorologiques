@@ -41,9 +41,9 @@ export class RegionsComponent implements OnInit {
   ajouterRegion(e){
     e.preventDefault();
 
-    //console.log(this.region);
+    //console.log(this.selectedVille);
     if(this.region.name !== undefined && this.region.name != null){
-      this.regionService.ajouterRegion(this.region, this.selectedVille).subscribe(( data ) =>{
+      this.regionService.ajouterRegion(this.region, this.region.ville.id).subscribe(( data ) =>{
         console.log(data);
         this.regions.push( this.region);
         this.region = new Region();
@@ -71,19 +71,20 @@ export class RegionsComponent implements OnInit {
   editerRegion(id){
     this.editer=true;
     //console.log(this.regions);
-    this.regionService.getRegion(id).subscribe(( data:any) => {
+      this.regionService.getRegion(id).subscribe(( data:any) => {
       this.region.id = data.body.id;
       this.region.name = data.body.name;
       this.region.ville = data.body.ville;
+      //this.selectedVille = data.body.ville;
       console.log(this.region.ville);
-      //console.log(this.region.ville.name);
+      //console.log(data.body.ville.name);
 
     });
 
   }
 
   validerModification() {
-    console.log(this.region);
+    //console.log(this.region);
     this.regionService.updateRegion(this.region).subscribe(( data) => {
       this.regionService.getAllRegions().subscribe( ( data: any[] ) => {
         this.regions = data;

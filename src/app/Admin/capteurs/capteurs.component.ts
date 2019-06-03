@@ -28,7 +28,7 @@ export class CapteursComponent implements OnInit {
   public  socket = SocketIo("http://localhost:4000/");
 
   public regions;
-  public regionSelected;
+  //public regionSelected;
 
 
   public notifications =[];
@@ -63,8 +63,8 @@ export class CapteursComponent implements OnInit {
 
   ajouterCapteur(e) {
     e.preventDefault();
-    if (this.capteur.libelle !== undefined && this.capteur.etat !== undefined && this.capteur.dateinstall !== undefined && this.capteur.marque !== undefined && this.regionSelected !== undefined) {
-      this.capteursService.ajouterCapteur(this.capteur, this.regionSelected).subscribe(( data ) => {
+    if (this.capteur.libelle !== undefined && this.capteur.etat !== undefined && this.capteur.dateinstall !== undefined && this.capteur.marque !== undefined && this.capteur.region!== undefined) {
+      this.capteursService.ajouterCapteur(this.capteur, this.capteur.region.id).subscribe(( data ) => {
         console.log(data);
         this.capteurs.push( this.capteur);
         this.capteur = new Capteurs();

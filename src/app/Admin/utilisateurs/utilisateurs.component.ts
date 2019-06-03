@@ -20,7 +20,7 @@ export class UtilisateursComponent implements OnInit {
   public editer = false;
   users;
   public regions;
-  public regionSelected;
+  //public regionSelected;
 
   constructor(private utilisateurService: UtilisateursService, private regionService: RegionService) { }
 
@@ -37,10 +37,10 @@ export class UtilisateursComponent implements OnInit {
   }
 
   ajouterUser(e: MouseEvent) {
-    console.log(this.regionSelected);
+
     e.preventDefault();
     if(this.user.username !== undefined && this.user.password !== undefined && this.user.repassword !== undefined && this.user.username != null){
-      this.utilisateurService.ajouterUser(this.user, this.regionSelected).subscribe(data  =>{
+      this.utilisateurService.ajouterUser(this.user, this.user.region.id).subscribe(data  =>{
         console.log(data);
         this.users.push( this.user);
         this.user =new User();
