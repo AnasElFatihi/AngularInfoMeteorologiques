@@ -3,8 +3,8 @@ import { RouterModule, Routes } from '@angular/router';
 import { LoginComponent} from '../Authentification/login/login.component';
 import {AccueilComponent} from '../Dashboard/accueil/accueil.component';
 import { AuthGuardService as AuthGuard} from '../Authentification/Guards/auth-guard.service';
-import { AuthGuardUserGuard as AuthGuardUserGuard} from "../Authentification/Guards/auth-guard-user.guard";
-import { AuthGuardRespGuard as AuthGuardresp} from "../Authentification/Guards/auth-guard-resp.guard";
+//import { AuthGuardUserGuard as AuthGuardUserGuard} from "../Authentification/Guards/auth-guard-user.guard";
+//import { AuthGuardRespGuard as AuthGuardresp} from "../Authentification/Guards/auth-guard-resp.guard";
 import {VillesComponent} from '../Admin/villes/villes.component';
 import {CapteursComponent} from '../Admin/capteurs/capteurs.component';
 import {UtilisateursComponent} from "../Admin/utilisateurs/utilisateurs.component";
@@ -12,11 +12,12 @@ import {SaisieValeurComponent} from "../Admin/capteurs/saisie-valeur/saisie-vale
 import {MesuresComponent} from '../Admin/mesures/mesures.component';
 import {RegionsComponent} from '../Admin/regions/regions.component';
 import {NotificationComponent} from "../Admin/mesures/notification/notification.component";
-import {DashboarduserComponent} from '../User/dashboarduser/dashboarduser.component';
+import {MaindashboardComponent} from "../Dashboard/maindashboard/maindashboard.component";
+/*import {DashboarduserComponent} from '../User/dashboarduser/dashboarduser.component';
 import {DashboardrespComponent} from "../Responsable/dashboardresp/dashboardresp.component";
 import {CapteursrespComponent} from "../Responsable/capteursresp/capteursresp.component";
 import {ErreurComponent} from "../erreur/erreur.component";
-import {MaindashboardComponent} from "../Dashboard/maindashboard/maindashboard.component";
+import {MaindashboardComponent} from "../Dashboard/maindashboard/maindashboard.component";*/
 
 const routes: Routes = [
   {
@@ -63,7 +64,7 @@ const routes: Routes = [
         component: RegionsComponent
       },
      ]},
-  {
+  /*{
     path: 'dashboardresp',
     component: DashboardrespComponent,
     canActivate: [AuthGuardresp],
@@ -78,7 +79,7 @@ const routes: Routes = [
     component: DashboarduserComponent,
     canActivate: [AuthGuardUserGuard],
     },
-  { path: '', component: ErreurComponent }
+  { path: '', component: ErreurComponent }*/
 ];
 
 @NgModule({
