@@ -19,6 +19,12 @@ import { RegionsComponent } from './Admin/regions/regions.component';
 import { NotificationComponent } from './Admin/mesures/notification/notification.component';
 // import { HTTP_INTERCEPTORS } from '@angular/common/http';
 // import { Interceptor } from './Authentification/Interceptor'
+
+
+import {ChartService} from "./Services/chart.service";
+import { MaindashboardComponent } from './Dashboard/maindashboard/maindashboard.component';
+import { HighchartsChartModule } from 'highcharts-angular';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -31,6 +37,7 @@ import { NotificationComponent } from './Admin/mesures/notification/notification
     SaisieValeurComponent,
     MesuresComponent,
     NotificationComponent,
+    MaindashboardComponent,
 
   ],
   imports: [
@@ -38,7 +45,8 @@ import { NotificationComponent } from './Admin/mesures/notification/notification
     BrowserModule,
     FormsModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    HighchartsChartModule
   ],
   exports: [RouterModule],
   providers: [
@@ -47,7 +55,7 @@ import { NotificationComponent } from './Admin/mesures/notification/notification
       useClass: Interceptor,
       multi: true
     }*/
-
+    ChartService
 ],
   bootstrap: [AppComponent]
 })

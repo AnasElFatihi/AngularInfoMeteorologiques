@@ -2,9 +2,13 @@ import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
 import {Capteurs} from '../../Classes/capteurs';
 import {CapteursService} from '../../Services/capteurs.service';
 import {SharingDataService} from "../../Services/sharing-data.service";
+
+import * as SocketIo from 'socket.io-client';
+
 import {RegionService} from "../../Services/regions.service";
 import {CsvService} from "../../Services/csv.service";
-import * as SocketIo from 'socket.io-client';
+
+
 
 declare var swal: any;
 
@@ -28,7 +32,7 @@ export class CapteursComponent implements OnInit {
   public  socket = SocketIo("http://localhost:4000/");
 
   public regions;
-  //public regionSelected;
+  public regionSelected;
 
 
   public notifications =[];
@@ -58,6 +62,9 @@ export class CapteursComponent implements OnInit {
 
 
     });
+
+
+    console.log(localStorage.getItem('regions'));
   }
 
 
@@ -186,20 +193,5 @@ export class CapteursComponent implements OnInit {
   }
 
 
-/*
-
-  private initializeWebSocketConnection() {
-    let ws = new SockJS(this.serverUrl);
-    this.stompClient = Stomp.over(ws);
-    let that = this;
-    this.stompClient.connect({}, function(frame) {
-      that.stompClient.subscribe("/chat", (message) => {
-        if(message.body) {
-          $(".chat").append("<div class='message'>"+message.body+"</div>")
-          console.log(message.body);
-        }
-      });
-    });
-  }*/
 
 }

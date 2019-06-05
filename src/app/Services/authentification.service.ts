@@ -11,6 +11,8 @@ export class AuthentificationService {
    url = 'http://localhost:8080/';
    public temoin = false;
    public temoinRegister = false;
+   public region;
+
 
   constructor(private http: HttpClient, public router: Router) {
   }
@@ -31,6 +33,19 @@ export class AuthentificationService {
     return false;
   }
 
+
+  getRegion(id):any{
+    let region:any;
+
+    this.http.get(this.url+"appUsers/getregion/"+id).subscribe((data : any) =>{
+       return data.name;
+
+
+    },(error)=>{
+      return "";
+    });
+  }
+
   login( user ) {
     return this.http.post(this.url+"login", {
       username: user.username,
@@ -42,7 +57,13 @@ export class AuthentificationService {
       localStorage.setItem('username', tokendecoded.sub);// username bash naffichiw dik monsieur ...
 
       localStorage.setItem('roles', tokendecoded.roles);// les roles dyalo 3la 9bel les droits ( format string avec , separa )
-      localStorage.setItem('regions', tokendecoded.regions); // hadi mazal khassha tekhdem mora crud regions
+
+      this.http.get(this.url+"appUsers/getregion/"+tokendecoded.sub).subscribe((data : any) =>{
+        localStorage.setItem('regions',data.name); ;
+
+
+      });
+      
       this.router.navigate(['dashboard']);
     }, error  => {
       console.log('error');

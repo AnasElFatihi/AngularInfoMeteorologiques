@@ -27,7 +27,7 @@
           <div class="menu_section">
             <h3>Menu</h3>
             <ul class="nav side-menu">
-              <li><a routerLink=""><i class="fa fa-home"></i> DASHBOARD </a>
+              <li><a routerLink="/dashboard/home"><i class="fa fa-home"></i> DASHBOARD </a>
               </li>
               <li><a><i class="fa fa-edit"></i> Regions <span class="fa fa-chevron-down"></span></a>
                 <ul class="nav child_menu">
@@ -120,7 +120,7 @@
                 <a  class="dropdown-toggle info-number"  >
                   <i class="fa fa-envelope-o"></i>
                   <span class="badge bg-green">{{ notifications?.length}}</span>
-                  
+
                 </a>
 
 
@@ -136,7 +136,7 @@
                             {{ element?.message}}
                          </span>
                   </a>
-                  
+
                 </li>
 
               </ul>
@@ -153,6 +153,7 @@
 
     <!-- page content -->
     <div class="right_col" role="main">
+
       <!-- top tiles -->
       <router-outlet></router-outlet>
     </div>

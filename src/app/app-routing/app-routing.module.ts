@@ -10,6 +10,7 @@ import {SaisieValeurComponent} from "../Admin/capteurs/saisie-valeur/saisie-vale
 import {MesuresComponent} from "../Admin/mesures/mesures.component";
 import {RegionsComponent} from '../Admin/regions/regions.component';
 import {NotificationComponent} from "../Admin/mesures/notification/notification.component";
+import {MaindashboardComponent} from "../Dashboard/maindashboard/maindashboard.component";
 
 const routes: Routes = [
   {
@@ -24,6 +25,10 @@ const routes: Routes = [
       {
         path: 'villes',
         component: VillesComponent
+      },
+      {
+        path: 'home',
+        component: MaindashboardComponent
       },
       {
         path: 'capteurs',
