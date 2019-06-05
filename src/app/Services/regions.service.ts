@@ -14,22 +14,24 @@ export class RegionService {
   getAllRegions() {
     return this.http.get(this.url + '/all');
   }
-  getRegion(id){
-    return this.http.get(this.url + '/' + id,{observe: 'response'});
+  getRegion(id) {
+    return this.http.get(this.url + '/' + id, { observe: 'response'});
   }
+
   ajouterRegion(region, ida) {
 
     return this.http.post(this.url + '/' + ida, {
       name: region.name,
       id : region.id,
+      ville: region.ville
     }, {observe: 'response'});
   }
 
-  deleteRegion(id){
+  deleteRegion(id) {
     console.log(id);
     return this.http.delete(this.url + '/' + id,{observe: 'response'});
   }
-  updateRegion(region){
+  updateRegion(region) {
 
     return this.http.put(this.url + '/' + region.id,{
       id: region.id,

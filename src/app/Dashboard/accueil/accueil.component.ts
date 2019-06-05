@@ -50,7 +50,7 @@ export class AccueilComponent implements OnInit, AfterViewInit {
 
 
 
-  logout(){
+  logout() {
     localStorage.clear();
     sessionStorage.clear();
     console.log(localStorage.getItem('token'));

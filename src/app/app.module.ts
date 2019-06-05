@@ -17,6 +17,10 @@ import { SaisieValeurComponent } from './Admin/capteurs/saisie-valeur/saisie-val
 import { MesuresComponent } from './Admin/mesures/mesures.component';
 import { RegionsComponent } from './Admin/regions/regions.component';
 import { NotificationComponent } from './Admin/mesures/notification/notification.component';
+import { DashboardrespComponent } from './Responsable/dashboardresp/dashboardresp.component';
+import { CapteursrespComponent } from './Responsable/capteursresp/capteursresp.component';
+import { DashboarduserComponent } from './User/dashboarduser/dashboarduser.component';
+import { ErreurComponent } from './erreur/erreur.component';
 // import { HTTP_INTERCEPTORS } from '@angular/common/http';
 // import { Interceptor } from './Authentification/Interceptor'
 @NgModule({
@@ -30,6 +34,10 @@ import { NotificationComponent } from './Admin/mesures/notification/notification
     UtilisateursComponent,
     SaisieValeurComponent,
     MesuresComponent,
+    DashboardrespComponent,
+    CapteursrespComponent,
+    DashboarduserComponent,
+    ErreurComponent,
     NotificationComponent,
 
   ],
