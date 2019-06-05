@@ -1,5 +1,5 @@
 import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
-import {Capteurs} from '../../Classes/capteurs';
+import { Capteurs } from '../../Classes/capteurs';
 import {CapteursService} from '../../Services/capteurs.service';
 import {SharingDataService} from "../../Services/sharing-data.service";
 
@@ -7,6 +7,12 @@ import * as SocketIo from 'socket.io-client';
 
 import {RegionService} from "../../Services/regions.service";
 import {CsvService} from "../../Services/csv.service";
+
+
+import {RegionService} from '../../Services/regions.service';
+import {CsvService} from '../../Services/csv.service';
+import {SharingDataService} from '../../Services/sharing-data.service';
+import * as SocketIo from 'socket.io-client';
 
 
 
@@ -22,43 +28,44 @@ export class CapteursComponent implements OnInit {
   public capteurs;
   public capteur: Capteurs = new Capteurs();
   public capteurEditer: Capteurs = new Capteurs();
-  public editer = false ;
+  public editer = false;
 
-  public csvContent ;
-  public montableau=[];
+  public csvContent;
+  public montableau = [];
 
-  public data =[];
+  public data = [];
 
-  public  socket = SocketIo("http://localhost:4000/");
+  public socket = SocketIo('http://localhost:4000/');
 
   public regions;
   public regionSelected;
 
 
-  public notifications =[];
+  public notifications = [];
 
-  constructor(private capteursService: CapteursService, private regionService: RegionService,private csvService:CsvService
-  , private sharingDataService : SharingDataService)
-  { this.notifications = new Array();  }
+  constructor(private capteursService: CapteursService, private regionService: RegionService, private csvService: CsvService
+    , private sharingDataService: SharingDataService) {
+    this.notifications = new Array();
+  }
 
   ngOnInit() {
-    this.capteursService.getAllCapteurs().subscribe( ( data: any[] ) => {
+    this.capteursService.getAllCapteurs().subscribe((data: any[]) => {
       this.capteurs = data;
       console.log(this.capteurs);
     });
-    this.regionService.getAllRegions().subscribe( ( data:any[] ) => {
+    this.regionService.getAllRegions().subscribe((data: any[]) => {
       this.regions = data;
       console.log(this.regions);
     });
 
 
     this.socket.on(
-      "data" ,(data) => console.log(data)
+      "data", (data) => console.log(data)
     );
 
     this.socket.on("notification", (data) => {
-        this.notifications = data;
-        this.sharingDataService.notifications= data;
+      this.notifications = data;
+      this.sharingDataService.notifications = data;
 
 
     });
@@ -70,23 +77,25 @@ export class CapteursComponent implements OnInit {
 
   ajouterCapteur(e) {
     e.preventDefault();
-    if (this.capteur.libelle !== undefined && this.capteur.etat !== undefined && this.capteur.dateinstall !== undefined && this.capteur.marque !== undefined && this.capteur.region!== undefined) {
-      this.capteursService.ajouterCapteur(this.capteur, this.capteur.region.id).subscribe(( data ) => {
+    if (this.capteur.libelle !== undefined && this.capteur.etat !== undefined && this.capteur.dateinstall !== undefined && this.capteur.marque !== undefined && this.regionSelected !== undefined) {
+      this.capteursService.ajouterCapteur(this.capteur, this.regionSelected).subscribe((data) => {
         console.log(data);
-        this.capteurs.push( this.capteur);
+        this.capteurs.push(this.capteur);
         this.capteur = new Capteurs();
         swal('Capteur ajouté!', '', 'success');
-        this.capteursService.getAllCapteurs().subscribe( ( data: any[] ) => {
+        this.capteursService.getAllCapteurs().subscribe((data: any[]) => {
           this.capteurs = data;
         });
-      }); }  else {
+      });
+    } else {
       swal('Remplissez tous les champs SVP!", "", "error');
-    }}
+    }
+  }
 
   deleteCapteur(idcapt) {
-    this.capteursService.deleteCapteur(idcapt).subscribe(( data) => {
+    this.capteursService.deleteCapteur(idcapt).subscribe((data) => {
       swal('Capteur Supprimée!', '', 'success');
-      this.capteursService.getAllCapteurs().subscribe( ( data: any[] ) => {
+      this.capteursService.getAllCapteurs().subscribe((data: any[]) => {
         this.capteurs = data;
       });
     });
@@ -96,7 +105,7 @@ export class CapteursComponent implements OnInit {
 
     this.editer = true;
 
-    this.capteursService.getCapteur(id).subscribe(( data:any) => {
+    this.capteursService.getCapteur(id).subscribe((data: any) => {
       console.log(data);
       this.capteur.idcapt = data.body.idcapt;
       this.capteur.libelle = data.body.libelle;
@@ -110,8 +119,8 @@ export class CapteursComponent implements OnInit {
   }
 
   validerModification() {
-    this.capteursService.updateCapteur(this.capteur).subscribe(( data) => {
-      this.capteursService.getAllCapteurs().subscribe( (data : any[] ) => {
+    this.capteursService.updateCapteur(this.capteur).subscribe((data) => {
+      this.capteursService.getAllCapteurs().subscribe((data: any[]) => {
         this.capteurs = data;
 
       });
@@ -132,6 +141,7 @@ export class CapteursComponent implements OnInit {
     this.myInputVariable.nativeElement.value = '';
     this.data = new Array();
   }
+
   onFileSelect(input: HTMLInputElement) {
     const files = input.files;
     const content = this.csvContent;
@@ -149,6 +159,7 @@ export class CapteursComponent implements OnInit {
 
 
   }
+
   onFileLoad = (fileLoadedEvent) => {
 
     const csvSeparator = ';';
@@ -161,37 +172,56 @@ export class CapteursComponent implements OnInit {
     const lines = txt.split('\n');
     lines.forEach(element => {
       const cols: string[] = element.split(csvSeparator);
-      if(cols[0] !== "")
+      if (cols[0] !== "")
         this.data.push(cols);
     });
 
 
-
-    for(let i=0; i<this.data.length;i++)
-      this.montableau.push({"idcapteur":this.data[i][0],"idmesure":this.data[i][1],"date":this.data[i][2],"valeur":this.data[i][3]})
+    for (let i = 0; i < this.data.length; i++)
+      this.montableau.push({
+        "idcapteur": this.data[i][0],
+        "idmesure": this.data[i][1],
+        "date": this.data[i][2],
+        "valeur": this.data[i][3]
+      })
     this.data = [];
   }
 
 
-   uploader() {
-     console.log(this.montableau);
+  uploader() {
+    console.log(this.montableau);
 
-    this.csvService.upload(this.montableau).subscribe( (data : any)=> {
-        //console.log(data);
-      if( data.body.length >0)
-      {
-        this.socket.emit("notification",data.body);
+    this.csvService.upload(this.montableau).subscribe((data: any) => {
+      //console.log(data);
+      if (data.body.length > 0) {
+        this.socket.emit("notification", data.body);
 
       }
 
 
     });
-     this.montableau=[];
-     this.reset();
+    this.montableau = [];
+    this.reset();
 
 
   }
-
-
-
 }
+
+/*
+
+  private initializeWebSocketConnection() {
+    let ws = new SockJS(this.serverUrl);
+    this.stompClient = Stomp.over(ws);
+    let that = this;
+    this.stompClient.connect({}, function(frame) {
+      that.stompClient.subscribe("/chat", (message) => {
+        if(message.body) {
+          $(".chat").append("<div class='message'>"+message.body+"</div>")
+          console.log(message.body);
+        }
+      });
+    });
+  }
+}
+
+*/

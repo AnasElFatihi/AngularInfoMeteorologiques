@@ -25,7 +25,7 @@ export class CapteursService {
       etat: capteur.etat,
       dateinstall: capteur.dateinstall,
       marque: capteur.marque,
-      //region: capteur.region,
+      // region: capteur.region,
     }, {observe: 'response'});
   }
 
@@ -35,7 +35,7 @@ export class CapteursService {
   }
 
   getCapteur(id) {
-    return this.http.get(this.url + '/' + id ,{ observe: 'response'});
+    return this.http.get(this.url + '/' + id , { observe: 'response'});
   }
 
 
@@ -49,7 +49,6 @@ export class CapteursService {
       marque: capteur.marque,
       region: capteur.region},
       { observe: 'response'});
-
-      console.log("mora update" + capteur);
+    console.log( 'mora update' + capteur);
   }
 }
