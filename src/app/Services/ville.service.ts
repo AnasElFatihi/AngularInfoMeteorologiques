@@ -11,7 +11,6 @@ export class VilleService {
 
   url = 'http://localhost:8080/villes';
 
-
   constructor(private http: HttpClient, public router: Router) { }
 
   getAllVilles() {

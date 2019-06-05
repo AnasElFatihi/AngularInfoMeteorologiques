@@ -1,11 +1,7 @@
-import {AfterViewInit, Component, OnInit, ViewChild} from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import {AuthentificationService} from '../../Services/authentification.service';
 import {ActivatedRoute, Router} from '@angular/router';
-import {CapteursComponent} from "../../Admin/capteurs/capteurs.component";
-import {SharingDataService} from "../../Services/sharing-data.service";
-import * as SocketIo from 'socket.io-client';
 
-declare var swal: any;
 
 
 @Component({
@@ -13,17 +9,12 @@ declare var swal: any;
   templateUrl: './accueil.component.html',
   styleUrls: ['./accueil.component.css']
 })
-export class AccueilComponent implements OnInit, AfterViewInit {
+export class AccueilComponent implements OnInit {
 
   public username;
   public  initialisation = false;
 
-  public  socket = SocketIo("http://localhost:4000/");
-
-
-  public notifications =[];
-
-  constructor(private authentificationService: AuthentificationService,private sharingDataService : SharingDataService ) {
+  constructor(private authentificationService: AuthentificationService ) {
 
 
 
@@ -34,15 +25,7 @@ export class AccueilComponent implements OnInit, AfterViewInit {
 
     this.username = localStorage.getItem('username');
 
-    this.socket.on("notification", (data) => {
-      this.notifications = data;
-      this.sharingDataService.notifications= data;
-      console.log(this.notifications);
-
-    });
-
   }
-
   ngAfterViewInit() {
 
 
@@ -50,13 +33,9 @@ export class AccueilComponent implements OnInit, AfterViewInit {
 
 
 
-  logout() {
+  logout(){
     localStorage.clear();
     sessionStorage.clear();
     console.log(localStorage.getItem('token'));
-  }
-
-  focusOutFunction() {
-    this.notifications=[];
   }
 }
