@@ -11,14 +11,34 @@ import {AppRoutingModule} from './app-routing/app-routing.module';
 import { HttpClientModule } from '@angular/common/http';
 import { AccueilComponent } from './Dashboard/accueil/accueil.component';
 import { VillesComponent } from './Admin/villes/villes.component';
-//import { HTTP_INTERCEPTORS } from '@angular/common/http';
-//import { Interceptor } from './Authentification/Interceptor'
+import { CapteursComponent } from './Admin/capteurs/capteurs.component';
+import { UtilisateursComponent } from './Admin/utilisateurs/utilisateurs.component';
+import { SaisieValeurComponent } from './Admin/capteurs/saisie-valeur/saisie-valeur.component';
+import { MesuresComponent } from './Admin/mesures/mesures.component';
+import { RegionsComponent } from './Admin/regions/regions.component';
+import { NotificationComponent } from './Admin/mesures/notification/notification.component';
+import { DashboardrespComponent } from './Responsable/dashboardresp/dashboardresp.component';
+import { CapteursrespComponent } from './Responsable/capteursresp/capteursresp.component';
+import { DashboarduserComponent } from './User/dashboarduser/dashboarduser.component';
+import { ErreurComponent } from './erreur/erreur.component';
+// import { HTTP_INTERCEPTORS } from '@angular/common/http';
+// import { Interceptor } from './Authentification/Interceptor'
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
     AccueilComponent,
     VillesComponent,
+    CapteursComponent,
+    RegionsComponent,
+    UtilisateursComponent,
+    SaisieValeurComponent,
+    MesuresComponent,
+    DashboardrespComponent,
+    CapteursrespComponent,
+    DashboarduserComponent,
+    ErreurComponent,
+    NotificationComponent,
 
   ],
   imports: [
