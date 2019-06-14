@@ -69,7 +69,6 @@ export class MesuresComponent implements OnInit {
   editerMesure(id: any) {
     this.editer = true;
     this.mesureService.getMesure(id).subscribe((data: any) => {
-
       this.mesure.id = data.body.id;
       this.mesure.mesure = data.body.mesure;
       this.mesure.type = data.body.typevaleur;

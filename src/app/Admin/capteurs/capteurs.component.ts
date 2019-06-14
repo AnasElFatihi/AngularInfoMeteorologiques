@@ -2,13 +2,9 @@ import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
 import {Capteurs} from '../../Classes/capteurs';
 import {CapteursService} from '../../Services/capteurs.service';
 import {SharingDataService} from "../../Services/sharing-data.service";
-
-import * as SocketIo from 'socket.io-client';
-
 import {RegionService} from "../../Services/regions.service";
 import {CsvService} from "../../Services/csv.service";
-
-
+import * as SocketIo from 'socket.io-client';
 
 declare var swal: any;
 
@@ -32,13 +28,13 @@ export class CapteursComponent implements OnInit {
   public  socket = SocketIo("http://localhost:4000/");
 
   public regions;
-  public regionSelected;
+  //public regionSelected;
 
 
   public notifications =[];
 
   constructor(private capteursService: CapteursService, private regionService: RegionService,private csvService:CsvService
-  , private sharingDataService : SharingDataService)
+    , private sharingDataService : SharingDataService)
   { this.notifications = new Array();  }
 
   ngOnInit() {
@@ -57,14 +53,11 @@ export class CapteursComponent implements OnInit {
     );
 
     this.socket.on("notification", (data) => {
-        this.notifications = data;
-        this.sharingDataService.notifications= data;
+      this.notifications = data;
+      this.sharingDataService.notifications= data;
 
 
     });
-
-
-    console.log(localStorage.getItem('regions'));
   }
 
 
@@ -97,14 +90,14 @@ export class CapteursComponent implements OnInit {
     this.editer = true;
 
     this.capteursService.getCapteur(id).subscribe(( data:any) => {
-      console.log(data);
+      //console.log(data);
       this.capteur.idcapt = data.body.idcapt;
       this.capteur.libelle = data.body.libelle;
       this.capteur.etat = data.body.etat;
       this.capteur.dateinstall = data.body.dateinstall;
       this.capteur.marque = data.body.marque;
       this.capteur.region = data.body.region;
-      console.log(this.capteurs);
+        //console.log(data.body);
 
     });
   }
@@ -173,11 +166,11 @@ export class CapteursComponent implements OnInit {
   }
 
 
-   uploader() {
-     console.log(this.montableau);
+  uploader() {
+    console.log(this.montableau);
 
     this.csvService.upload(this.montableau).subscribe( (data : any)=> {
-        //console.log(data);
+      //console.log(data);
       if( data.body.length >0)
       {
         this.socket.emit("notification",data.body);
@@ -186,12 +179,27 @@ export class CapteursComponent implements OnInit {
 
 
     });
-     this.montableau=[];
-     this.reset();
+    this.montableau=[];
+    this.reset();
 
 
   }
 
 
+  /*
+
+    private initializeWebSocketConnection() {
+      let ws = new SockJS(this.serverUrl);
+      this.stompClient = Stomp.over(ws);
+      let that = this;
+      this.stompClient.connect({}, function(frame) {
+        that.stompClient.subscribe("/chat", (message) => {
+          if(message.body) {
+            $(".chat").append("<div class='message'>"+message.body+"</div>")
+            console.log(message.body);
+          }
+        });
+      });
+    }*/
 
 }
