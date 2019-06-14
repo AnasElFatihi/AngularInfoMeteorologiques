@@ -29,8 +29,7 @@
             "scripts": [
               "./src/assets/js/gentellajs/vendors/jquery/dist/jquery.js",
               "./src/assets/js/gentellajs/vendors/bootstrap/dist/js/bootstrap.js",
-              "./src/assets/js/gentellajs/vendors/fastclick/lib/fastclick.js",
-
+              "./src/assets/js/gentellajs/vendors/fastclick/lib/fastclick.js"
             ],
             "es5BrowserSupport": true
           },

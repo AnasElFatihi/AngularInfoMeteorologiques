@@ -1,12 +1,10 @@
-import {AfterViewInit, Component, ElementRef, OnInit, ViewChild} from '@angular/core';
+import {AfterViewInit, Component, OnInit, ViewChild} from '@angular/core';
 import {AuthentificationService} from '../../Services/authentification.service';
 import {ActivatedRoute, Router} from '@angular/router';
 import {CapteursComponent} from "../../Admin/capteurs/capteurs.component";
 import {SharingDataService} from "../../Services/sharing-data.service";
 import * as SocketIo from 'socket.io-client';
-import {ChartService} from "../../Services/chart.service";
 
-import * as Highcharts from 'highcharts';
 declare var swal: any;
 
 
@@ -25,10 +23,11 @@ export class AccueilComponent implements OnInit, AfterViewInit {
 
   public notifications =[];
 
-  constructor(private authentificationService: AuthentificationService,private sharingDataService : SharingDataService ,private chartService : ChartService) {
+  constructor(private authentificationService: AuthentificationService,private sharingDataService : SharingDataService ) {
+
+
 
   }
-  @ViewChild('charts') public chartEl: ElementRef;
 
   ngOnInit() {
 
@@ -42,22 +41,16 @@ export class AccueilComponent implements OnInit, AfterViewInit {
 
     });
 
-
-
-
-
-
   }
 
   ngAfterViewInit() {
 
-    //console.log(localStorage.getItem("regions'));
 
   }
 
 
 
-  logout(){
+  logout() {
     localStorage.clear();
     sessionStorage.clear();
     console.log(localStorage.getItem('token'));
@@ -66,9 +59,4 @@ export class AccueilComponent implements OnInit, AfterViewInit {
   focusOutFunction() {
     this.notifications=[];
   }
-
-
-
-
-
 }

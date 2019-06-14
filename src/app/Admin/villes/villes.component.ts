@@ -62,8 +62,7 @@ export class VillesComponent implements OnInit {
         this.ville.name=data.body.name;
         this.ville.latitude=data.body.latitude;
         this.ville.longitude=data.body.longitude;
-        //console.log(this.ville.name);
-        console.log(this.ville);
+      console.log(this.ville);
 
       });
 

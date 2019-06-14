@@ -17,14 +17,12 @@ import { SaisieValeurComponent } from './Admin/capteurs/saisie-valeur/saisie-val
 import { MesuresComponent } from './Admin/mesures/mesures.component';
 import { RegionsComponent } from './Admin/regions/regions.component';
 import { NotificationComponent } from './Admin/mesures/notification/notification.component';
+import { DashboardrespComponent } from './Responsable/dashboardresp/dashboardresp.component';
+import { CapteursrespComponent } from './Responsable/capteursresp/capteursresp.component';
+import { DashboarduserComponent } from './User/dashboarduser/dashboarduser.component';
+import { ErreurComponent } from './erreur/erreur.component';
 // import { HTTP_INTERCEPTORS } from '@angular/common/http';
 // import { Interceptor } from './Authentification/Interceptor'
-
-
-import {ChartService} from "./Services/chart.service";
-import { MaindashboardComponent } from './Dashboard/maindashboard/maindashboard.component';
-import { HighchartsChartModule } from 'highcharts-angular';
-
 @NgModule({
   declarations: [
     AppComponent,
@@ -36,8 +34,11 @@ import { HighchartsChartModule } from 'highcharts-angular';
     UtilisateursComponent,
     SaisieValeurComponent,
     MesuresComponent,
+    DashboardrespComponent,
+    CapteursrespComponent,
+    DashboarduserComponent,
+    ErreurComponent,
     NotificationComponent,
-    MaindashboardComponent,
 
   ],
   imports: [
@@ -45,8 +46,7 @@ import { HighchartsChartModule } from 'highcharts-angular';
     BrowserModule,
     FormsModule,
     AppRoutingModule,
-    HttpClientModule,
-    HighchartsChartModule
+    HttpClientModule
   ],
   exports: [RouterModule],
   providers: [
@@ -55,7 +55,7 @@ import { HighchartsChartModule } from 'highcharts-angular';
       useClass: Interceptor,
       multi: true
     }*/
-    ChartService
+
 ],
   bootstrap: [AppComponent]
 })
