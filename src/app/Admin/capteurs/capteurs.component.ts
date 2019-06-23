@@ -2,16 +2,8 @@ import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
 import { Capteurs } from '../../Classes/capteurs';
 import {CapteursService} from '../../Services/capteurs.service';
 import {SharingDataService} from "../../Services/sharing-data.service";
-
-import * as SocketIo from 'socket.io-client';
-
 import {RegionService} from "../../Services/regions.service";
-import {CsvService} from "../../Services/csv.service";
-
-
-import {RegionService} from '../../Services/regions.service';
 import {CsvService} from '../../Services/csv.service';
-import {SharingDataService} from '../../Services/sharing-data.service';
 import * as SocketIo from 'socket.io-client';
 
 

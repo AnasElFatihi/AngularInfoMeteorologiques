@@ -1,14 +1,51 @@
-<highcharts-chart
-  [Highcharts]="Highcharts"
-  [options]="chartOptions"
 
-  style="width: 100%; height: 400px; display: block;"
-></highcharts-chart>
+<div class="container">
+  <div class="row">
+    <div class="col-xs-6">
+      <div class="col-xs-12">
+        <label> Region :</label>
+        <select name="regionselected" class="form-control" (change)="changerStatregion()" [(ngModel)]="regionchoisie">
+          <option *ngFor="let element of regions" value="{{element.id}}"> {{ element.name}}</option>
+        </select>
+      </div>
+      <div class="col-xs-12" style="padding-top: 10px;">
+        <div *ngIf="chartOptions1">
+          <highcharts-chart
+            [Highcharts]="Highcharts"
+            [options]="chartOptions1"
+            style="width: auto; height: auto; display: block;"
+          ></highcharts-chart>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-xs-6">
+      <div  *ngIf="chartOptions">
+        <highcharts-chart
+          [Highcharts]="Highcharts"
+          [options]="chartOptions"
+
+          style="width: auto; height: auto; display: block;"
+        ></highcharts-chart>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="row">
+    <highcharts-chart
+      [Highcharts]="Highcharts"
+      [constructorType]="'mapChart'"
+      [options]="chartMap"
+
+      style="width: 100%; height: 650px; display: block;"
+    ></highcharts-chart>
 
 
-<highcharts-chart
-  [Highcharts]="Highcharts"
-  [options]="chartOptions1"
+  </div>
+</div>
 
-  style="width: 100%; height: 400px; display: block;"
-></highcharts-chart>
+
+
+
+

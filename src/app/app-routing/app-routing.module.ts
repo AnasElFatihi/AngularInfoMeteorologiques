@@ -3,8 +3,8 @@ import { RouterModule, Routes } from '@angular/router';
 import { LoginComponent} from '../Authentification/login/login.component';
 import {AccueilComponent} from '../Dashboard/accueil/accueil.component';
 import { AuthGuardService as AuthGuard} from '../Authentification/Guards/auth-guard.service';
-//import { AuthGuardUserGuard as AuthGuardUserGuard} from "../Authentification/Guards/auth-guard-user.guard";
-//import { AuthGuardRespGuard as AuthGuardresp} from "../Authentification/Guards/auth-guard-resp.guard";
+import { AuthGuardUserGuard as AuthGuardUserGuard} from "../Authentification/Guards/auth-guard-user.guard";
+import { AuthGuardRespGuard as AuthGuardresp} from "../Authentification/Guards/auth-guard-resp.guard";
 import {VillesComponent} from '../Admin/villes/villes.component';
 import {CapteursComponent} from '../Admin/capteurs/capteurs.component';
 import {UtilisateursComponent} from "../Admin/utilisateurs/utilisateurs.component";
@@ -13,6 +13,10 @@ import {MesuresComponent} from '../Admin/mesures/mesures.component';
 import {RegionsComponent} from '../Admin/regions/regions.component';
 import {NotificationComponent} from "../Admin/mesures/notification/notification.component";
 import {MaindashboardComponent} from "../Dashboard/maindashboard/maindashboard.component";
+import {CapteursrespComponent} from "../Responsable/capteursresp/capteursresp.component";
+import {DashboarduserComponent} from "../User/dashboarduser/dashboarduser.component";
+//import {AuthGuardUserGuard} from "../Authentification/Guards/auth-guard-user.guard";
+import {DashboardrespComponent} from "../Responsable/dashboardresp/dashboardresp.component";
 /*import {DashboarduserComponent} from '../User/dashboarduser/dashboarduser.component';
 import {DashboardrespComponent} from "../Responsable/dashboardresp/dashboardresp.component";
 import {CapteursrespComponent} from "../Responsable/capteursresp/capteursresp.component";
@@ -64,7 +68,7 @@ const routes: Routes = [
         component: RegionsComponent
       },
      ]},
-  /*{
+  {
     path: 'dashboardresp',
     component: DashboardrespComponent,
     canActivate: [AuthGuardresp],
@@ -79,16 +83,18 @@ const routes: Routes = [
     component: DashboarduserComponent,
     canActivate: [AuthGuardUserGuard],
     },
-  { path: '', component: ErreurComponent }*/
+
 ];
 
 @NgModule({
   imports: [
+
     RouterModule.forRoot(routes)
   ],
   exports: [
     RouterModule
   ],
-  declarations: []
+  declarations: [],
+
 })
 export class AppRoutingModule { }

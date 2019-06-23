@@ -47,7 +47,7 @@ export class AuthentificationService {
   }
 
   login( user ) {
-    console.log(user);
+
     return this.http.post(this.url + 'login', {
       username: user.username,
       password: user.password,
@@ -56,25 +56,21 @@ export class AuthentificationService {
       let tokendecoded = jwt_decode(response.headers.get('Authorization')); // token mdecodi
       localStorage.setItem('token', response.headers.get('Authorization')); // full token bash itsitf fel header dyal chak request
       localStorage.setItem('username', tokendecoded.sub);// username bash naffichiw dik monsieur ...
-
+      console.log(tokendecoded);
       localStorage.setItem('roles', tokendecoded.roles);// les roles dyalo 3la 9bel les droits ( format string avec , separa )
+      this.router.navigate(['dashboard']);
 
       this.http.get(this.url+"appUsers/getregion/"+tokendecoded.sub).subscribe((data : any) =>{
         localStorage.setItem('regions',data.name); ;
-
+        //console.log(data);
 
       });
 
-      this.router.navigate(['dashboard']);
-      localStorage.setItem('username', tokendecoded.sub); // username bash naffichiw dik monsieur ...
-      console.log(tokendecoded);
-      localStorage.setItem('roles', tokendecoded.roles); // les roles dyalo 3la 9bel les droits ( format string avec , separa )
-      localStorage.setItem('regions', tokendecoded.regions); // hadi mazal khassha tekhdem mora crud regions
-      console.log(localStorage.getItem('roles'));
       if (this.isUserLoggedAs('ADMIN')) { this.router.navigate(['dashboard']); }
       else if (this.isUserLoggedAs('RESPONSABLE')) { this.router.navigate(['dashboardresp']); }
       else if (this.isUserLoggedAs('USER')) { this.router.navigate(['dashboarduser']); }
-      // else {this.router.navigate(['erreur']); }
+      // this.router.navigate(['dashboard']);
+
     }, error  => {
       console.log('error');
       this.temoin = true;

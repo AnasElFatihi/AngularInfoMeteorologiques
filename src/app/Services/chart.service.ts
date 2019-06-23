@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
-import * as Highcharts from 'highcharts';
+import {HttpClient} from "@angular/common/http";
+
 
 
 @Injectable({
@@ -7,9 +8,11 @@ import * as Highcharts from 'highcharts';
 })
 export class ChartService {
 
-  constructor() { }
+  url = 'http://localhost:8080/';
+  constructor( private http: HttpClient) { }
 
-  createChart(el, cfg) {
-    Highcharts.chart(el, cfg);
-  }
+   loadchartbyregion(id : any){
+      return this.http.get(this.url+ "stats/" + id);
+
+   }
 }

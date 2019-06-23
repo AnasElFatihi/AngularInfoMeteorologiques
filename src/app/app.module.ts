@@ -31,6 +31,11 @@ import { NotificationComponent } from './Admin/mesures/notification/notification
 import {ChartService} from "./Services/chart.service";
 import { MaindashboardComponent } from './Dashboard/maindashboard/maindashboard.component';
 import { HighchartsChartModule } from 'highcharts-angular';
+import { CapteursrespComponent } from './Responsable/capteursresp/capteursresp.component';
+import { DashboardrespComponent } from './Responsable/dashboardresp/dashboardresp.component';
+import { DashboarduserComponent } from './User/dashboarduser/dashboarduser.component';
+import {AuthGuardRespGuard} from "./Authentification/Guards/auth-guard-resp.guard";
+import {AuthGuardUserGuard} from "./Authentification/Guards/auth-guard-user.guard";
 
 
 @NgModule({
@@ -50,6 +55,9 @@ import { HighchartsChartModule } from 'highcharts-angular';
     //ErreurComponent,
     NotificationComponent,
     MaindashboardComponent,
+    CapteursrespComponent,
+    DashboardrespComponent,
+    DashboarduserComponent,
 
   ],
   imports: [
@@ -67,7 +75,8 @@ import { HighchartsChartModule } from 'highcharts-angular';
       useClass: Interceptor,
       multi: true
     }*/
-    ChartService
+    ChartService,
+
 ],
   bootstrap: [AppComponent]
 })
