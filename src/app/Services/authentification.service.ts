@@ -12,7 +12,7 @@ export class AuthentificationService {
    public temoin = false;
    public temoinRegister = false;
    public region;
-
+   public reg;
 
   constructor(private http: HttpClient, public router: Router) {
   }
@@ -60,10 +60,10 @@ export class AuthentificationService {
       localStorage.setItem('roles', tokendecoded.roles);// les roles dyalo 3la 9bel les droits ( format string avec , separa )
       this.router.navigate(['dashboard']);
 
-      this.http.get(this.url+"appUsers/getregion/"+tokendecoded.sub).subscribe((data : any) =>{
-        localStorage.setItem('regions',data.name); ;
-        //console.log(data);
-
+      this.http.get(this.url + 'appUsers/getregion/' + tokendecoded.sub).subscribe((data : any) => {
+        localStorage.setItem('region', data.name);
+        console.log(data);
+        this.reg = data.name;
       });
 
       if (this.isUserLoggedAs('ADMIN')) { this.router.navigate(['dashboard']); }

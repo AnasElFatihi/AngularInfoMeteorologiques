@@ -69,20 +69,18 @@ export class CapteursComponent implements OnInit {
 
   ajouterCapteur(e) {
     e.preventDefault();
-    if (this.capteur.libelle !== undefined && this.capteur.etat !== undefined && this.capteur.dateinstall !== undefined && this.capteur.marque !== undefined && this.regionSelected !== undefined) {
-      this.capteursService.ajouterCapteur(this.capteur, this.regionSelected).subscribe((data) => {
+    if (this.capteur.libelle !== undefined && this.capteur.etat !== undefined && this.capteur.dateinstall !== undefined && this.capteur.marque !== undefined && this.capteur.region !== undefined) {
+      this.capteursService.ajouterCapteur(this.capteur, this.capteur.region.id).subscribe(( data ) => {
         console.log(data);
-        this.capteurs.push(this.capteur);
+        this.capteurs.push( this.capteur);
         this.capteur = new Capteurs();
         swal('Capteur ajouté!', '', 'success');
-        this.capteursService.getAllCapteurs().subscribe((data: any[]) => {
+        this.capteursService.getAllCapteurs().subscribe( ( data: any[] ) => {
           this.capteurs = data;
         });
-      });
-    } else {
+      }); }  else {
       swal('Remplissez tous les champs SVP!", "", "error');
-    }
-  }
+    }}
 
   deleteCapteur(idcapt) {
     this.capteursService.deleteCapteur(idcapt).subscribe((data) => {

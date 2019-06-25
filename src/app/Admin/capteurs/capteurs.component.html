@@ -1,12 +1,5 @@
 
-
-
-
-
-
 <!-- debut component -->
-
-
 
 <div class="row">
   <div class="col-md-12 col-sm-12 col-xs-12">
@@ -37,7 +30,7 @@
             <label for="etat" class="control-label col-md-3 col-sm-3 col-xs-12"> Etat <span class="required">*</span></label>
             <div class="col-md-6 col-sm-6 col-xs-12">
               <input type="radio" name="etat" id="etat" value="1" [(ngModel)]="capteur.etat">  En Fonction <br>
-              <input type="radio" name="etat" id="etat" value="0" [(ngModel)]="capteur.etat">  En Panne<br>
+              <input type="radio" name="etat" id="etat" value="0" [(ngModel)]="capteur.etat">  En Panne <br>
             </div>
           </div>
 
@@ -58,7 +51,7 @@
           <div class="form-group">
             <label class="control-label col-md-3 col-sm-3 col-xs-12">Region<span class="required">*</span> </label>
             <div class="col-md-6 col-sm-6 col-xs-12">
-              <select class="form-control" id="nameregion" name="region" [(ngModel)] ="capteur.region">
+              <select class="form-control" id="region" name="region" [(ngModel)] = "capteur.region">
                 <option [ngValue]="region" *ngFor="let region of regions">{{region.name}}</option>
               </select>
             </div>

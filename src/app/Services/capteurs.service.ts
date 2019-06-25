@@ -25,7 +25,19 @@ export class CapteursService {
       etat: capteur.etat,
       dateinstall: capteur.dateinstall,
       marque: capteur.marque,
-      // region: capteur.region,
+      // region: capteur.region
+    }, {observe: 'response'});
+  }
+
+  ajouterCapteur2(capteur, ida) {
+
+    return this.http.post(this.url + '/capteurresponsable/' + ida, {
+      idcapt : capteur.idcapt,
+      libelle: capteur.libelle,
+      etat: capteur.etat,
+      dateinstall: capteur.dateinstall,
+      marque: capteur.marque,
+      // region: capteur.region
     }, {observe: 'response'});
   }
 

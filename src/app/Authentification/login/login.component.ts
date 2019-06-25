@@ -37,6 +37,6 @@ export class LoginComponent implements OnInit {
   }
 
   enregistrer() {
-    this.authentificationService.enregistrer(this.userRegiter,this.repassword);
+    this.authentificationService.enregistrer(this.userRegiter, this.repassword);
   }
 }

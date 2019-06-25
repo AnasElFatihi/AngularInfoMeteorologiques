@@ -9,7 +9,7 @@ import {AuthentificationService} from "../../Services/authentification.service";
 export class DashboardrespComponent implements OnInit {
 
   public username;
-  public region ;
+  public regionname ;
   public  initialisation = false;
 
   constructor(private authentificationService: AuthentificationService ) { }
@@ -17,7 +17,9 @@ export class DashboardrespComponent implements OnInit {
 
 
     this.username = localStorage.getItem('username');
-    this.region = localStorage.getItem('region');
+    this.regionname = localStorage.getItem('region');
+
+    console.log(this.regionname);
   }
   ngAfterViewInit() {
 

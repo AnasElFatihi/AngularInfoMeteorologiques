@@ -70,12 +70,12 @@
 
         <tbody *ngIf="villes">
         <tr *ngFor="let element of villes" >
-          <td>{{ element.name }}</td>
-          <td>{{ element.latitude }}</td>
-          <td>{{ element.longitude }}</td>
+          <td>{{ element?.name }}</td>
+          <td>{{ element?.latitude }}</td>
+          <td>{{ element?.longitude }}</td>
           <td>
-            <button class="btn btn-small btn-info" (click)="editerVille(element.id)"> Editer </button>
-            <button class="btn btn-small btn-danger" *ngIf="element.id != undefined" (click)="deleteVille(element.id)"> Supprimer</button>
+            <button class="btn btn-small btn-info" (click)="editerVille(element?.id)"> Editer </button>
+            <button class="btn btn-small btn-danger" *ngIf="element?.id != undefined" (click)="deleteVille(element?.id)"> Supprimer</button>
 
           </td>
         </tr>

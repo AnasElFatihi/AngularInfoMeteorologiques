@@ -37,10 +37,10 @@ export class RegionsComponent implements OnInit {
   }
 
 
-  ajouterRegion(e){
+  ajouterRegion(e) {
     e.preventDefault();
     console.log(this.regions);
-    if(this.region.name !== undefined && this.region.name != null){
+    if (this.region.name !== undefined && this.region.name != null) {
       this.regionService.ajouterRegion(this.region, this.region.ville.id).subscribe(( data ) =>{
         console.log(data);
         this.regions.push( this.region);
@@ -49,13 +49,13 @@ export class RegionsComponent implements OnInit {
         this.regionService.getAllRegions().subscribe( ( data:any[] ) => {
           this.regions = data;
         });
-      });}
-    else{
+      }); }
+    else {
       swal("Remplissez tous les champs SVP!", "", "error");
     }
   }
 
-  deleteRegion(id){
+  deleteRegion(id) {
     this.regionService.deleteRegion(id).subscribe(( data) => {
       swal("Region Supprimée!", "", "success");
 
