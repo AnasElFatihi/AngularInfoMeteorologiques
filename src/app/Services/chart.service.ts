@@ -15,4 +15,10 @@ export class ChartService {
       return this.http.get(this.url+ "stats/" + id);
 
    }
+  getRegionMesures(){
+    return this.http.get(this.url+"stats/allregions");
+  }
+  getStatCapteurRegion(id){
+    return this.http.get(this.url+"stats/regions/"+id)
+  }
 }

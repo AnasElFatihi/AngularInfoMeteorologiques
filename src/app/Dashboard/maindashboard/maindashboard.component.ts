@@ -1,10 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 import * as Highcharts from 'highcharts';
-import {CapteursService} from "../../Services/capteurs.service";
 import {RegionService} from "../../Services/regions.service";
-import {CsvService} from "../../Services/csv.service";
-import {SharingDataService} from "../../Services/sharing-data.service";
 import {ChartService} from "../../Services/chart.service";
 import HC_map from 'highcharts/modules/map';
 HC_map(Highcharts);
@@ -29,10 +26,13 @@ export class MaindashboardComponent implements OnInit {
   };
 
   chartOptions1;
+  Piechartoptions;
+  Piechartoptions2;
 
   ngOnInit() {
       this.regionService.getAllRegions().subscribe( ( data : any[] )=>{
       this.regions = data;
+      this.regionchoisie=this.regions[0].id;
       this.chartService.loadchartbyregion(this.regions[0].id).subscribe( ( donnee : any[] ) => {
         console.log(donnee);
         let a = Array();
@@ -116,6 +116,22 @@ export class MaindashboardComponent implements OnInit {
       });
          });
 
+      // remplissage Pie chart
+    this.chartService.getRegionMesures().subscribe( ( data : any[] )=>{
+      let size = data.length;
+      let mesures=Array();   // alocation dymaqiue d'un tableau pour chak mesure
+      let tab = [];
+
+      for (let  i=0;i < size ;i++) {
+        tab.push({
+          name:data[i][0], y:data[i][1]
+        });
+    }
+      this.donneepie=tab;
+      this.initPie();
+      this.statcapteurregion(this.regions[0].id);
+    });
+
 
   }
 
@@ -126,7 +142,7 @@ export class MaindashboardComponent implements OnInit {
   public regionchoisie;
   changerStatregion(){
     this.chartService.loadchartbyregion(this.regionchoisie).subscribe( ( donnee : any[] ) => {
-      console.log(donnee);
+
       let a = Array();
       a[0]=donnee[0][2];
       let temoin = true;
@@ -206,7 +222,7 @@ export class MaindashboardComponent implements OnInit {
         series: mesSeries
       };
     });
-
+    this.statcapteurregion(this.regionchoisie);
   }
 
   chartMap: Highcharts.Options = {
@@ -265,8 +281,89 @@ export class MaindashboardComponent implements OnInit {
     } as Highcharts.SeriesMapOptions]
   };
 
+  public donneepie;
 
+  initPie(){
+    this.Piechartoptions ={
+      chart: {
+        plotBackgroundColor: null,
+        plotBorderWidth: null,
+        plotShadow: false,
+        type: 'pie'
+      },
+      title: {
+        text: 'Répartition des mesures par Région'
+      },
+      tooltip: {
+        //pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+      },
+      plotOptions: {
+        pie: {
+          allowPointSelect: true,
+          cursor: 'pointer',
+          dataLabels: {
+            enabled: true,
+            // format: '<b>{point.name}</b>: {point.percentage:.1f} %',
+            style: {
+              //  color: (Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black'
+            }
+          }
+        }
+      },
+      series: [{
+        name: 'mesures',
+        colorByPoint: true,
+        data: this.donneepie,
+      }]
 
+    };
+  }
 
+  private statcapteurregion(id) {
+    this.chartService.getStatCapteurRegion(id).subscribe( (data:any)=>{
+      console.log(data);
+      this.Piechartoptions2 ={
+        chart: {
+          plotBackgroundColor: null,
+          plotBorderWidth: null,
+          plotShadow: false,
+          type: 'pie'
+        },
+        title: {
+          text: '% des capteurs de la region choisie'
+        },
+        tooltip: {
+          //pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+        },
+        plotOptions: {
+          pie: {
+            allowPointSelect: true,
+            cursor: 'pointer',
+            dataLabels: {
+              enabled: true,
+              // format: '<b>{point.name}</b>: {point.percentage:.1f} %',
+              style: {
+                //  color: (Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black'
+              }
+            }
+          }
+        },
+        series: [{
+          name: 'mesures',
+          colorByPoint: true,
+          data: [
+            {
+              name:"Capteur de la region choisie",
+              y:data[0]
+            },
+            {
+              name:"Total",
+              y:data[1]
+            }
+          ],
+        }]
 
+      };
+    });
+  }
 }

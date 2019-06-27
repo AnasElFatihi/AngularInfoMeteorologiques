@@ -18,21 +18,37 @@
         </div>
       </div>
     </div>
-
     <div class="col-xs-6">
-      <div  *ngIf="chartOptions">
+      <div  *ngIf="Piechartoptions2" style="padding-top: 30px;">
         <highcharts-chart
           [Highcharts]="Highcharts"
-          [options]="chartOptions"
 
-          style="width: auto; height: auto; display: block;"
+          [options]="Piechartoptions2"
+
+          style="width: auto; height: 440px; display: block;"
         ></highcharts-chart>
+
+      </div>
+    </div>
+
+
+  </div>
+  <div class="row">
+    <div class="col-xs-6">
+      <div  *ngIf="Piechartoptions" style="padding-top: 30px;">
+        <highcharts-chart
+          [Highcharts]="Highcharts"
+
+          [options]="Piechartoptions"
+
+          style="width: auto; height: 440px; display: block;"
+        ></highcharts-chart>
+
       </div>
     </div>
 
   </div>
-
-  <div class="row">
+  <div class="row" style="padding-top: 20px;">
     <highcharts-chart
       [Highcharts]="Highcharts"
       [constructorType]="'mapChart'"
@@ -42,6 +58,15 @@
     ></highcharts-chart>
 
 
+  </div>
+  <div class="row">
+
+    <highcharts-chart
+      [Highcharts]="Highcharts"
+      [options]="chartOptions"
+
+      style="width: auto; height: auto; display: block;"
+    ></highcharts-chart>
   </div>
 </div>
 
